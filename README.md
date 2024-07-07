@@ -1,1 +1,3 @@
-# recipe-manager
+Recipe Manager 
+
+A basic recipe manager
