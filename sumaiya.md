@@ -1,5 +1,7 @@
-name: sumaiya naveed
+Name:Sumaiya naveed
 
-age: 18yrs
+Age: 18yrs
 
-college: GC university
+College: GC university
+
+City: multan
