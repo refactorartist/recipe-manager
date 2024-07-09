@@ -1,7 +1,8 @@
-name:Ryan Harris zubair
+Name:Ryan Harris zubair
 
-age: 13 years old
+Age: 13 years old
 
-school: gilbroskolen
+School: gilbroskolen
 
 
+city: ishoj
