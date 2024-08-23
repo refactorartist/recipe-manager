@@ -15,3 +15,7 @@ license = {text = "MIT"}
 distribution = false
 
 
+[tool.pdm.scripts]
+
+mongo = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.mongodb.yaml up"
+postgreSQL = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.postgres.yaml up"
