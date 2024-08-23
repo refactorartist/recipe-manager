@@ -1,0 +1,15 @@
+version: 16.4
+
+services:
+
+  db:
+    image: postgres
+    restart: always 
+    ports:
+      - 5432:5432
+    volumes:
+      - /home/ryan_harris/Projects/recipe-manager/postgres_database_files
+    environment:
+      POSTGRES_PASSWORD: post_password
+      POSTGRES_USER: post_user 
+      POSTGERS_DB: user_db
