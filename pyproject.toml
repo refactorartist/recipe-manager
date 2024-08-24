@@ -3,7 +3,10 @@ name = "recipe-manager"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [{ name = "ryan harris zubair", email = "ryan@runicengines" }]
-dependencies = ["fastapi>=0.112.1"]
+dependencies = [
+    "fastapi[standard]>=0.112.1",
+    "pymongo>=4.8.0",
+]
 requires-python = "==3.12.*"
 readme = "README.md"
 license = { text = "MIT" }
@@ -14,6 +17,7 @@ distribution = false
 
 
 [tool.pdm.scripts]
+server = "fastapi dev /home/ryan_harris/Projects/recipe-manager/src/recipe_manager/main.py"
 mongo_start = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.mongodb.yaml up -d"
 postgresql_start = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.postgres.yaml up -d"
 mongo_stop = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.mongodb.yaml down --remove-orphans"
