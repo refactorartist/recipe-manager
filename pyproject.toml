@@ -5,7 +5,8 @@ description = "Default template for PDM package"
 authors = [{ name = "ryan harris zubair", email = "ryan@runicengines" }]
 dependencies = [
     "fastapi[standard]>=0.112.1",
-    "pymongo>=4.8.0",
+    "pymongo[aws,encryption,gssapi,ocsp,snappy,zstd]>=4.8.0",
+    "pykerberos>=1.2.4",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
