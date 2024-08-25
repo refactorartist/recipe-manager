@@ -3,7 +3,7 @@ version: '3.8'
 
 services:
 
-  db:
+  user_db:
     image: 'postgres:latest'
     restart: 'always' 
     container_name: user_db
@@ -17,4 +17,5 @@ services:
       POSTGRES_USER: 'post_user' 
       POSTGERS_DB: 'user_db'
 
-  
+volumes:
+  user_db:
