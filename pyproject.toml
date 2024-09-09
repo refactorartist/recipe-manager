@@ -7,6 +7,9 @@ dependencies = [
     "fastapi[standard]>=0.112.1",
     "pymongo[aws,encryption,gssapi,ocsp,snappy,zstd]>=4.8.0",
     "pykerberos>=1.2.4",
+    "atlas-provider-sqlalchemy>=0.2.2",
+    "atlas>=0.3.0",
+    "plantuml>=0.3.0",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"
