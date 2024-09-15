@@ -1,146 +1,115 @@
-@startuml erd 
-
-
-left to right direction 
-
+@startuml erd
+left to right direction
 !theme amiga
-
 entity user{
-# id: uuid <<PK>>   
-+ first_name: str  
-+ last_name: str 
-+ username: str 
-+ password: str 
+    # id: uuid <<PK>>
+    + first_name: str
+    + last_name: str
+    + username: str
+    + password: str
 }
-
 entity email {
-# user_id: uuid <<FK>>  <<PK>> 
-+  email: str 
-+  email_password: str
+    # user_id: uuid <<FK>>  <<PK>>
+    +  email: str
+    +  email_password: str
 }
-
 entity loaciton {
-# user_id: uuid <<FK>>  <<PK>>
-+ country: str   
-+ state: str 
-+ city: str  
+    # user_id: uuid <<FK>>  <<PK>>
+    + country: str
+    + state: str
+    + city: str
 }
+entity user_image {
 
-entity user_image { 
-# user_id: uuid <<FK>>  <<PK>>
-+ image: png
-+ JSON: JSON
+    # user_id: uuid <<FK>>  <<PK>>
+    + image: png
+    + JSON: JSON
 }
-
 entity friends {
-+ user_id: uuid <<FK>>  
-+ friend_id: uuid <<FK>>  
+    + user_id: uuid <<FK>>
+    + friend_id: uuid <<FK>>
 }
-
-
-
 entity subs {
-+ to: uuid <<FK>>  
-+ from : uuid <<FK>>  
+    + to: uuid <<FK>>
+    + from : uuid <<FK>>
 }
-
-
-
 entity repices {
-# repices_id: uuid <<PK>>
-+ author_id: uuid <<FK>>
-+ rated: int
-+ number_comments: int
-+ likes: int
-+ subs_repices: int 
-+ videos: int  
+    # repices_id: uuid <<PK>>
+    + author_id: uuid <<FK>>
+    + rated: int
+    + number_comments: int
+    + likes: int
+    + subs_repices: int
+    + videos: int
 }
-
-
-
 entity repice_user_metadata{
-# user_id: uuid <<PK>> <<FK>>
-+ repice_id: uuid <<FK>>
-+ liked: bool
-+ disliked: bool
-+ commented: bool
-+ rated: int
-+ sub_autor: bool
-+ autor_id: uuid <<FK>>
+    # user_id: uuid <<PK>> <<FK>>
+    + repice_id: uuid <<FK>>
+    + liked: bool
+    + disliked: bool
+    + commented: bool
+    + rated: int
+    + sub_autor: bool
+    + autor_id: uuid <<FK>>
 }
-
 entity comments {
-# comment_id:uuid <<PK>>
-+ repice_id: uuid <<FK>>
-+ user_id: uuid <<FK>>
-+ comment:str 
-+ comment_on:str 
+    # comment_id:uuid <<PK>>
+    + repice_id: uuid <<FK>>
+    + user_id: uuid <<FK>>
+    + comment:str
+    + comment_on:str
 }
-
 entity user_metadata {
-# user:uuid <<PK>> <<FK>>
-+ start: date
-+ end:date 
-+ time_spendt: int 
-+ friends: int 
-+ subs: int
-+ comments: int
-+ repices: int
-+ bio: str 
-
+    # user:uuid <<PK>> <<FK>>
+    + start: date
+    + end:date
+    + time_spendt: int
+    + friends: int
+    + subs: int
+    + comments: int
+    + repices: int
+    + bio: str
 }
-
 entity vidoes{
-# vidoes_id: uuid <<PK>> <<FK>> 
-+ repice_id: uuid <<FK>>
-+ vidoes: somthing 
+    # vidoes_id: uuid <<PK>> <<FK>>
+    + repice_id: uuid <<FK>>
+    + vidoes: somthing
 }
-
 entity group {
-# group_id: uuid <<PK>> 
-+ name: str <<FK>>
-+ users: int
+    # group_id: uuid <<PK>>
+    + name: str <<FK>>
+    + users: int
 }
-
 entity image{
-# image_id: uuid <<PK>>
-+ repice_id: uuid <<FK>>
-+ image: png
+    # image_id: uuid <<PK>>
+    + repice_id: uuid <<FK>>
+    + image: png
+}
+entity group_user {
+
+    +group_id: uuid  <<FK>>
+    +user_id: uuid  <<FK>>
 }
 
-entity group_user { 
-+group_id: uuid  <<FK>>
-+user_id: uuid  <<FK>>
-}
- 
-
-
-user ||---|| user_metadata : user_id 
-user ||---|| email : user_id 
-user ||---|| loaciton : user_id  
-user ||---|| user_image : user_id  
-user ||---{ friends : user_id 
+user ||---|| user_metadata : user_id
+user ||---|| email : user_id
+user ||---|| loaciton : user_id
+user ||---|| user_image : user_id
+user ||---{ friends : user_id
 user ||---|| group_user : user_id
 user ||---{ comments
-user ||----{ subs : subs from  
+user ||----{ subs : subs from
 user ||----|| repices : author
 user ||----|| repice_user_metadata : user_id
 user ||----|| repice_user_metadata : author
 user ||----{ friends : user_id
-
 user_metadata ||----{ subs : number of subs
-user_metadata ||----{ repices: number of repices   
+user_metadata ||----{ repices: number of repices
 user_metadata ||----{ comments : number of comments
-
-
 group ||----{ group_user : group_id
-
-repice_user_metadata ||---|| comments
-
-
-repices ||---{ repice_user_metadata : repice_id
-repices ||----{ vidoes : vidoes 
-repices ||----{ comments : comments 
-repices ||----{ image  : image 
-
-@enduml
+    repice_user_metadata ||---|| comments
+    repices ||---{ repice_user_metadata : repice_id
+    repices ||----{ vidoes : vidoes
+    repices ||----{ comments : comments
+    repices ||----{ image  : image
+    @enduml
