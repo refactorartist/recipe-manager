@@ -126,11 +126,11 @@ user ||----{ subs : subs from
 user ||----|| repices : author
 user ||----|| repice_user_metadata : user_id
 user ||----|| repice_user_metadata : author
+user ||----{ friends : user_id
 
 user_metadata ||----{ subs : number of subs
 user_metadata ||----{ repices: number of repices   
 user_metadata ||----{ comments : number of comments
-user_metadata ||----{ friends : number of friends
 
 
 group ||----{ group_user : group_id
