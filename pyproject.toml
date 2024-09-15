@@ -2,14 +2,31 @@
 name = "recipe-manager"
 version = "0.1.0"
 description = "Default template for PDM package"
-authors = [
-    {name = "ryan harris zubair", email = "ryan@runicengines"},
+authors = [{ name = "ryan harris zubair", email = "ryan@runicengines" }]
+dependencies = [
+    "fastapi[standard]>=0.112.1",
+    "pymongo[aws,encryption,gssapi,ocsp,snappy,zstd]>=4.8.0",
+    "pykerberos>=1.2.4",
+    "atlas-provider-sqlalchemy>=0.2.2",
+    "atlas>=0.3.0",
+    "plantuml>=0.3.0",
 ]
-dependencies = []
 requires-python = "==3.12.*"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
 
 [tool.pdm]
 distribution = false
+
+
+[tool.pdm.scripts]
+server = "fastapi dev /home/ryan_harris/Projects/recipe-manager/src/recipe_manager/main.py"
+mongo_start = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.mongodb.yaml up -d"
+postgresql_start = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.postgres.yaml up -d"
+mongo_stop = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.mongodb.yaml down --remove-orphans"
+postgresql_stop = "docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.postgres.yaml down --remove-orphans"
+start = { composite = ["mongo_start", "postgresql_start"] }
+stop = { composite = ["mongo_stop", "postgresql_stop"] }
+restart = {composite = ["start","stop"]}
+logs_all = {composite = ["docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.postgres.yaml logs","docker-compose -f /home/ryan_harris/Projects/recipe-manager/docker_composes/docker-compose.mongodb.yaml logs"]}
